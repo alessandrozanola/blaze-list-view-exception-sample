@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.azanola'
+version = '0.0.1'
+sourceCompatibility = '15'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    blazeVersion = '1.6.6'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    runtime 'mysql:mysql-connector-java:8.0.25'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.modelmapper:modelmapper:2.4.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+    testImplementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.1'
+
+    compile "com.blazebit:blaze-persistence-core-api:$blazeVersion"
+    runtime "com.blazebit:blaze-persistence-core-impl:$blazeVersion"
+    runtime "com.blazebit:blaze-persistence-integration-hibernate-5.4:$blazeVersion"
+    compile "com.blazebit:blaze-persistence-integration-spring-data-2.4:$blazeVersion"
+    compile "com.blazebit:blaze-persistence-integration-entity-view-spring:$blazeVersion"
+    runtime "com.blazebit:blaze-persistence-integration-entity-view-cdi:$blazeVersion"
+    compile "com.blazebit:blaze-persistence-jpa-criteria-api:$blazeVersion"
+    runtime "com.blazebit:blaze-persistence-jpa-criteria-impl:$blazeVersion"
+    compile "com.blazebit:blaze-persistence-entity-view-api:$blazeVersion"
+    runtime "com.blazebit:blaze-persistence-entity-view-impl:$blazeVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
